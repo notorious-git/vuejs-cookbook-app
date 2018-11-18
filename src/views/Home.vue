@@ -1,9 +1,26 @@
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <div v-for="recipe in recipes">
-      <h2>{{ recipe.title }}</h2>
-      <p>{{ recipe.ingredients }}</p>
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="display-4">Hello, world!</h1>
+        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+      </div>
+      <div class="row">
+        <div v-for="recipe in recipes" class="col-md-4 mb-2">
+          <div class="card">
+            <img class="card-img-top" v-bind:src="recipe.image_url" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{ recipe.title }}</h5>
+              <p class="card-text">Chef: {{ recipe.chef }}</p>
+              <p class="card-text">Ingredients: {{ recipe.ingredients }}</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
