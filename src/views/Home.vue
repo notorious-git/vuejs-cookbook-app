@@ -10,6 +10,10 @@
       </div>
 
       <h1>Add new recipe</h1>
+      Name: <input v-model="newRecipeName" type="text">
+      Chef: <input v-model="newRecipeChef" type="text">
+      Ingredients: <input v-model="newRecipeIngredients" type="text">
+      Directions: <input v-model="newRecipeDirections" type="text">
       <button v-on:click="createRecipe()" class="btn btn-primary">Create</button>
 
       <div class="row">
@@ -39,7 +43,11 @@ export default {
   data: function() {
     return {
       message: "Welcome to Vue.js!",
-      recipes: []
+      recipes: [],
+      newRecipeName: "",
+      newRecipeChef: "",
+      newRecipeIngredients: "",
+      newRecipeDirections: ""
     };
   },
   created: function() {
@@ -54,17 +62,28 @@ export default {
     createRecipe: function() {
       console.log("createRecipe");
       var params = {
-        input_title: "Test title",
-        input_chef: "Test chef",
-        input_ingredients: "Test ingredients",
-        input_directions: "Test directions"
+        input_title: this.newRecipeName,
+        input_chef: this.newRecipeChef,
+        input_ingredients: this.newRecipeIngredients,
+        input_directions: this.newRecipeDirections
       };
-      axios.post("http://localhost:3000/api/recipes", params).then(
-        function(response) {
-          console.log(response);
-          this.recipes.push(response.data);
-        }.bind(this)
-      );
+      axios
+        .post("http://localhost:3000/api/recipes", params)
+        .then(
+          function(response) {
+            console.log(response);
+            this.recipes.push(response.data);
+            this.newRecipeName = "";
+            this.newRecipeChef = "";
+            this.newRecipeIngredients = "";
+            this.newRecipeDirections = "";
+          }.bind(this)
+        )
+        .catch(
+          function(error) {
+            console.log(error.response);
+          }.bind(this)
+        );
     }
   },
   computed: {}
