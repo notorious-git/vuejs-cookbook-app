@@ -27,7 +27,13 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+            <a class="nav-link" href="/#/signup">Signup</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/#/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/#/logout">Logout</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
