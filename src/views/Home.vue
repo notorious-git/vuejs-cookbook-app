@@ -8,6 +8,10 @@
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
         <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
       </div>
+
+      <h1>Add new recipe</h1>
+      <button v-on:click="createRecipe()" class="btn btn-primary">Create</button>
+
       <div class="row">
         <div v-for="recipe in recipes" class="col-md-4 mb-2">
           <div class="card">
@@ -46,7 +50,23 @@ export default {
       }.bind(this)
     );
   },
-  methods: {},
+  methods: {
+    createRecipe: function() {
+      console.log("createRecipe");
+      var params = {
+        input_title: "Test title",
+        input_chef: "Test chef",
+        input_ingredients: "Test ingredients",
+        input_directions: "Test directions"
+      };
+      axios.post("http://localhost:3000/api/recipes", params).then(
+        function(response) {
+          console.log(response);
+          this.recipes.push(response.data);
+        }.bind(this)
+      );
+    }
+  },
   computed: {}
 };
 </script>
