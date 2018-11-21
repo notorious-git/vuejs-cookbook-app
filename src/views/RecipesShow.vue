@@ -21,9 +21,11 @@ export default {
     };
   },
   created: function() {
-    axios.get("http://localhost:3000/api/recipes/3").then(response => {
-      this.recipe = response.data;
-    });
+    axios
+      .get("http://localhost:3000/api/recipes/" + this.$route.params.id)
+      .then(response => {
+        this.recipe = response.data;
+      });
   },
   methods: {},
   computed: {}
