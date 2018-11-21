@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import RecipesNew from "./views/RecipesNew.vue";
+import RecipesShow from "./views/RecipesShow.vue";
 import Signup from "./views/Signup.vue";
 import Login from "./views/Login.vue";
 import Logout from "./views/Logout.vue";
@@ -23,6 +24,7 @@ export default new Router({
     { path: "/signup", name: "signup", component: Signup },
     { path: "/login", name: "login", component: Login },
     { path: "/logout", name: "logout", component: Logout },
+    { path: "/recipes/:id", name: "recipes-show", component: RecipesShow },
     {
       path: "/about",
       name: "about",
