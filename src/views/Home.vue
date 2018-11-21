@@ -27,7 +27,7 @@
               <h5 class="card-title">{{ recipe.title }}</h5>
               <p class="card-text">Chef: {{ recipe.chef }}</p>
               <p class="card-text">Ingredients: {{ recipe.ingredients }}</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a v-bind:href="`/#/recipes/${recipe.id}`" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
         </div>
