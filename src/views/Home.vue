@@ -19,8 +19,10 @@
       Directions: <input v-model="newRecipeDirections" type="text">
       <button v-on:click="createRecipe()" class="btn btn-primary">Create</button>
 
+      <h1>Search recipes</h1>
+      <input type="text" v-model="searchFilter">
       <div class="row">
-        <div v-for="recipe in recipes" class="col-md-4 mb-2">
+        <div v-for="recipe in filterBy(recipes, searchFilter, 'title', 'ingredients')" class="col-md-4 mb-2">
           <div class="card">
             <img class="card-img-top" v-bind:src="recipe.image_url" alt="Card image cap">
             <div class="card-body">
@@ -78,6 +80,7 @@ export default {
       newRecipeChef: "",
       newRecipeIngredients: "",
       newRecipeDirections: "",
+      searchFilter: "",
       errors: []
     };
   },
