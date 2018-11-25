@@ -20,8 +20,8 @@
       <button v-on:click="createRecipe()" class="btn btn-primary">Create</button>
 
       <div>
-        <button v-on:click="sortAttribute = 'title'" class="btn btn-secondary">Sort by title</button>
-        <button v-on:click="sortAttribute = 'chef'" class="btn btn-secondary">Sort by chef</button>
+        <button v-on:click="setSortAttribute('title')" class="btn btn-secondary">Sort by title</button>
+        <button v-on:click="setSortAttribute('chef')" class="btn btn-secondary">Sort by chef</button>
       </div>
       <h1>Search recipes</h1>
       <input type="text" v-model="searchFilter" list="names">
@@ -29,7 +29,7 @@
         <option v-for="recipe in recipes">{{ recipe.title }}</option>
       </datalist>
       <div class="row">
-        <div v-for="recipe in orderBy(filterBy(recipes, searchFilter, 'title', 'ingredients'), sortAttribute)" class="col-md-4 mb-2">
+        <div v-for="recipe in orderBy(filterBy(recipes, searchFilter, 'title', 'ingredients'), sortAttribute, sortOrder)" class="col-md-4 mb-2">
           <div class="card">
             <img class="card-img-top" v-bind:src="recipe.image_url" alt="Card image cap">
             <div class="card-body">
@@ -89,6 +89,7 @@ export default {
       newRecipeDirections: "",
       searchFilter: "",
       sortAttribute: "title",
+      sortOrder: 1,
       errors: []
     };
   },
@@ -103,6 +104,14 @@ export default {
   methods: {
     setCurrentRecipe: function(inputRecipe) {
       this.currentRecipe = inputRecipe;
+    },
+    setSortAttribute: function(inputAttribute) {
+      if (this.sortOrder === 1) {
+        this.sortOrder = -1;
+      } else {
+        this.sortOrder = 1;
+      }
+      this.sortAttribute = inputAttribute;
     },
     createRecipe: function() {
       console.log("createRecipe");
