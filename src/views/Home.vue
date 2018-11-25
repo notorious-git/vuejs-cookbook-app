@@ -28,8 +28,8 @@
       <datalist id="names">
         <option v-for="recipe in recipes">{{ recipe.title }}</option>
       </datalist>
-      <div class="row">
-        <div v-for="recipe in orderBy(filterBy(recipes, searchFilter, 'title', 'ingredients'), sortAttribute, sortOrder)" class="col-md-4 mb-2">
+      <div class="row" is="transition-group" name="slide-right">
+        <div v-for="recipe in orderBy(filterBy(recipes, searchFilter, 'title', 'ingredients'), sortAttribute, sortOrder)" class="col-md-4 mb-2" v-bind:key="recipe.id">
           <div class="card">
             <img class="card-img-top" v-bind:src="recipe.image_url" alt="Card image cap">
             <div class="card-body">
@@ -72,6 +72,37 @@
 </template>
 
 <style>
+/* Vue.js fade */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0
+}
+
+/* Vue.js slide-right */
+.slide-right-enter-active {
+  transition: all .3s ease;
+}
+.slide-right-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-right-enter, .slide-right-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+/* Vue.js slide-left */
+.slide-left-enter-active {
+  transition: all .3s ease;
+}
+.slide-left-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-left-enter, .slide-left-leave-to {
+  transform: translateX(-10px);
+  opacity: 0;
+}
 </style>
 
 <script>
