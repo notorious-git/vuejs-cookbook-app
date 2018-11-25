@@ -19,13 +19,17 @@
       Directions: <input v-model="newRecipeDirections" type="text">
       <button v-on:click="createRecipe()" class="btn btn-primary">Create</button>
 
+      <div>
+        <button v-on:click="sortAttribute = 'title'" class="btn btn-secondary">Sort by title</button>
+        <button v-on:click="sortAttribute = 'chef'" class="btn btn-secondary">Sort by chef</button>
+      </div>
       <h1>Search recipes</h1>
       <input type="text" v-model="searchFilter" list="names">
       <datalist id="names">
         <option v-for="recipe in recipes">{{ recipe.title }}</option>
       </datalist>
       <div class="row">
-        <div v-for="recipe in filterBy(recipes, searchFilter, 'title', 'ingredients')" class="col-md-4 mb-2">
+        <div v-for="recipe in orderBy(filterBy(recipes, searchFilter, 'title', 'ingredients'), sortAttribute)" class="col-md-4 mb-2">
           <div class="card">
             <img class="card-img-top" v-bind:src="recipe.image_url" alt="Card image cap">
             <div class="card-body">
@@ -84,6 +88,7 @@ export default {
       newRecipeIngredients: "",
       newRecipeDirections: "",
       searchFilter: "",
+      sortAttribute: "title",
       errors: []
     };
   },
